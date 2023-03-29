@@ -1,0 +1,67 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    /* background-color: #fff; */
+}
+.container{
+    width: 250px;
+    border: 1px solid orange;
+    margin: 0 auto;
+    top: 50%;
+    transform: translate(0, 30%);
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: whitesmoke
+}
+h2{
+    text-align: center;
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+/* main */
+.main{
+    padding-left: 40px;
+    
+}
+.main .label{
+    display: block;
+    font-size: 14px;
+}
+.main .input-text{
+    margin-bottom: 5px;
+    height: 25px;
+}
+.main .icon{
+    position: relative;
+    left: -25px;
+    /* padding-top: 12px; */
+    top: 2px;
+}
+.main #eye:hover{
+    cursor: pointer;
+}
+
+/*Sign up Button */
+.button{
+    background-color: orange;
+    margin-top: 15px;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+}
+.button:hover{
+    cursor: pointer;
+    opacity: 0.7;
+}
+/* Alert */
+#alert{
+    color: red;
+}
+
+/* Footer */
+.footer p{
+    padding: 10px;
+    font-size: 14px;
+}

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up</title>
+    <link rel="stylesheet" href="../css/loginSignup.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="../assets/themify-icons/themify-icons.css">
+</head>
+<body>
+    <input type="button" value="TEST ME" onclick="randomUserIdGenerator()">
+    <div class="container">
+        <h2 class="">Sign Up</h2>
+        <!-- Start: main -->
+        <div class="main" name="registration">
+            <label class="main-item label" for="">Full Name</label>
+            <input id="fullName" class="input-text" type="text" placeholder="Enter full name">
+            <i class="icon ti-pencil"></i>
+
+            <label class="main-item label" for="">Username</label>
+            <input id="userName" class="input-text" type="text" placeholder="Enter username">
+            <i class="icon ti-user"></i>
+
+            <label class="main-item label" for="">Email</label>
+            <input id="email" class="input-text" type="text" placeholder="Enter email">
+            <i class="icon ti-email"></i>
+            
+            <label class="main-item label" for="">Password</label>
+            <input id="password" class="input-text" type="password" placeholder="Enter password">
+            <i id="eye" class="icon fa-regular fa-eye"></i>
+            
+            <!-- <i class="fa-regular fa-eye-slash"></i> -->
+        </div>
+        <!-- End: main -->  
+
+        <!-- Start: Login button -->
+        <div id="button" class="button" onclick="validateAndSignUp()">
+            SIGN UP
+        </div>
+        <!-- End: Login button -->
+        <div id="alert">
+            
+        </div>
+        <!-- Start: Login footer -->
+        <div class="footer">
+            <p>Have an account ?<br> Click <a href="../html/login.html">here</a> to login.</p>
+        </div>
+        <!-- End: Login footer -->
+    </div>
+
+    <!-- Script -->
+    <script src="../js/common.js"></script>
+    <script src="../js/loginSignUp.js"></script>
+</body>
+</html>
