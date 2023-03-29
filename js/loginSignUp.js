@@ -1,21 +1,48 @@
-// COMMON START
+function test(){
+    // let obj = {
+    //     car: ['honda','toyota']
+    // }
+    // obj.car.push('BMW');
+    // console.log(obj);
+    let dog = [3,4,5]
+    let arr = [1,'hello',{flower: 'rose'},[99,97],dog];
+    console.log(arr);
+    for (const value of arr) {
+        console.log(value);
+    }
+}
 
+//***COMMON START */
+//define
 let eye = document.getElementById('eye');
 let password = document.getElementById('password');
 let button = document.getElementById('button');
 let validateAlert = document.getElementById('alert');
 let tempUserInfor = []; // 0: userId/ 1: fullName/ 2: userName/ 3: email/ 4: password
-
-// let userObject = {
-//     userId: userId,
-//     fullName: fullName,
-//     userName: userName,
-//     email: email,
-//     password: password,
-//     type: "user",
-//     status: "normal"
-// }
-
+//Object constructor define
+function userObject(){
+    this.userId = '';
+    this.fullName = '';
+    this.userName = '';
+    this.email = '';
+    this.password = '';
+    type: "user";
+    status: "normal"
+}
+function item(){
+    this.itemId = '';
+    this.itemName = '';
+    this.category = '';
+    this.price = '';
+    this.img = '';
+    this.stock = '';
+    this.type = 'item'
+}
+function itemRatingAndReview (){
+    this.itemId = '';
+    this.rating = 0;
+    this.review = []
+}
 
 // password eye toggle
 eye.addEventListener('click', eyeToggleFnt);
@@ -44,27 +71,46 @@ function validateAndSignUp() {
     let email = document.getElementById('email').value;
     let password = document.getElementById('password').value;
 
-    let userObject = {
-        userId: userId,
-        fullName: fullName,
-        userName: userName,
-        email: email,
-        password: password,
-        type: "user",
-        status: "normal"
-    }
+    // let userObject = {
+    //     userId: userId,
+    //     fullName: fullName,
+    //     userName: userName,
+    //     email: email,
+    //     password: password,
+    //     type: "user",
+    //     status: "normal"
+    // }
     
     if (randomUserIdGenerator()) {
         if (validateFullName(fullName, 5, 30)) {
             if (validateUserName(userName)) {
                 if (ValidateEmail(email)) {
                     if (validatePassword(password, 5, 10)) {
-                        pushTempUserInforToLocalStorage();
+                        // pushTempUserInforToLocalStorage();
+                        // alert("Sign Up Successful !");
+                        // window.location.href = "../html/login.html";
+                        pushTempUserInforToUserInforList();
+                        // console.log();
                     }
                 }
             }
         }
     }
+}
+function pushTempUserInforToUserInforList(){
+    //tempUserInfor
+    // 0: userId/ 1: fullName/ 2: userName/ 3: email/ 4: password
+    let userInforList = JSON.parse(localStorage.getItem('userInforList'));
+    let user = new userObject();
+    let key = Object.keys(user);
+    for (const index in tempUserInfor) {
+        user[key[index]] = tempUserInfor[index];
+    }
+    if(userInforList == null){
+        userInforList = [];
+    }
+    userInforList.push(user);
+    localStorage.setItem('userInforList',JSON.stringify(userInforList));
 }
 function pushTempUserInforToLocalStorage(){
     let listNameArr = ['userIdList','fullNameList','userNameList','emailList','passwordList'];
