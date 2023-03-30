@@ -10,12 +10,14 @@
     <link rel="stylesheet" href="../assets/themify-icons/themify-icons.css">
 </head>
 <body>
+    <input type="button" value="TEST ME" onclick="test()">
+
     <div class="container">
         <h2 class="">Login</h2>
         <!-- Start: main -->
         <div class="main">
             <label class="main-item label" for="">Username (or Email)</label>
-            <input class="input-text" type="text" placeholder="Enter Username/Email">
+            <input id="input-text" class="input-text" type="text" placeholder="Enter Username/Email">
             <i class="icon ti-user"></i>
             
             <label class="main-item label" for="">Password</label>
@@ -27,7 +29,7 @@
         <!-- End: main -->  
 
         <!-- Start: Login button -->
-        <div class="button">
+        <div class="button" onclick="validateAndLogin()">
             LOGIN
         </div>
         <!-- End: Login button -->

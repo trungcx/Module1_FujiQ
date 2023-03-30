@@ -1,26 +1,31 @@
-function test(){
+function test() {
     // let obj = {
     //     car: ['honda','toyota']
     // }
     // obj.car.push('BMW');
     // console.log(obj);
-    let dog = [3,4,5]
-    let arr = [1,'hello',{flower: 'rose'},[99,97],dog];
-    console.log(arr);
-    for (const value of arr) {
-        console.log(value);
-    }
+
+    // let dog = [3, 4, 5]
+    // let arr = [1, 'hello', { flower: 'rose' }, [99, 97], dog];
+    // localStorage.setItem('test', JSON.stringify(arr));
+
+    // console.log(arr);
+    // for (const value of arr) {
+    //     console.log(value);
+    // }
+
+    // divideUserInforList();
 }
 
 //***COMMON START */
 //define
 let eye = document.getElementById('eye');
-let password = document.getElementById('password');
+// let password = document.getElementById('password');
 let button = document.getElementById('button');
 let validateAlert = document.getElementById('alert');
 let tempUserInfor = []; // 0: userId/ 1: fullName/ 2: userName/ 3: email/ 4: password
 //Object constructor define
-function userObject(){
+function userObject() {
     this.userId = '';
     this.fullName = '';
     this.userName = '';
@@ -29,7 +34,7 @@ function userObject(){
     type: "user";
     status: "normal"
 }
-function item(){
+function item() {
     this.itemId = '';
     this.itemName = '';
     this.category = '';
@@ -38,7 +43,7 @@ function item(){
     this.stock = '';
     this.type = 'item'
 }
-function itemRatingAndReview (){
+function itemRatingAndReview() {
     this.itemId = '';
     this.rating = 0;
     this.review = []
@@ -70,60 +75,72 @@ function validateAndSignUp() {
     let userName = document.getElementById('userName').value;
     let email = document.getElementById('email').value;
     let password = document.getElementById('password').value;
-
-    // let userObject = {
-    //     userId: userId,
-    //     fullName: fullName,
-    //     userName: userName,
-    //     email: email,
-    //     password: password,
-    //     type: "user",
-    //     status: "normal"
-    // }
-    
+    divideUserInforList();
     if (randomUserIdGenerator()) {
         if (validateFullName(fullName, 5, 30)) {
             if (validateUserName(userName)) {
                 if (ValidateEmail(email)) {
                     if (validatePassword(password, 5, 10)) {
-                        // pushTempUserInforToLocalStorage();
-                        // alert("Sign Up Successful !");
-                        // window.location.href = "../html/login.html";
+                        // pushTempUserInforToLocalStorage();                      
                         pushTempUserInforToUserInforList();
-                        // console.log();
+                        alert("Sign Up Successful !");
+                        window.location.href = "../html/login.html";
                     }
                 }
             }
         }
     }
 }
-function pushTempUserInforToUserInforList(){
+function divideUserInforList() {
+    let userInforList = JSON.parse(localStorage.getItem('userInforList'));
+    let listNameArr = ['userIdList', 'fullNameList', 'userNameList', 'emailList', 'passwordList'];
+    let childArrList = [[], [], [], [], []]
+    if (userInforList == null) {
+        userInforList = [];
+        return 0;
+    }
+    let len = userInforList.length;
+    let keyName = Object.keys(userInforList[0][0]);
+
+    childArrList.forEach((childArr, index) => {
+        childArrList[index] = userInforList.map((userInfor, i) => {
+            return userInfor[0][keyName[index]];
+        })
+    })
+    listNameArr.forEach((listName, index) => {
+        listName = localStorage.setItem(listName, JSON.stringify(childArrList[index]));
+    })
+}
+function pushTempUserInforToUserInforList() {
     //tempUserInfor
     // 0: userId/ 1: fullName/ 2: userName/ 3: email/ 4: password
     let userInforList = JSON.parse(localStorage.getItem('userInforList'));
     let user = new userObject();
     let key = Object.keys(user);
+    let userInfor = [];
     for (const index in tempUserInfor) {
         user[key[index]] = tempUserInfor[index];
     }
-    if(userInforList == null){
+    userInfor.push(user);
+    if (userInforList == null) {
         userInforList = [];
     }
-    userInforList.push(user);
-    localStorage.setItem('userInforList',JSON.stringify(userInforList));
+    userInforList.push(userInfor);
+    localStorage.setItem('userInforList', JSON.stringify(userInforList));
+    divideUserInforList();
 }
-function pushTempUserInforToLocalStorage(){
-    let listNameArr = ['userIdList','fullNameList','userNameList','emailList','passwordList'];
+function pushTempUserInforToLocalStorage() {
+    let listNameArr = ['userIdList', 'fullNameList', 'userNameList', 'emailList', 'passwordList'];
     for (const i in tempUserInfor) {
         let listName = listNameArr[i];
         listName = JSON.parse(localStorage.getItem(listName));
-        if(listName == null){
+        if (listName == null) {
             listName = [];
             listName.push(tempUserInfor[i]);
         } else {
             listName.push(tempUserInfor[i]);
         }
-        localStorage.setItem(listNameArr[i],JSON.stringify(listName));
+        localStorage.setItem(listNameArr[i], JSON.stringify(listName));
     }
     tempUserInfor = []; //Reset array
 }
@@ -212,3 +229,48 @@ function randomUserIdGenerator() {
 }
 //***End SIGN UP */
 
+//***Start LOGIN */
+function validateAndLogin() {
+    let userNameOrEmail = document.getElementById('input-text').value;
+    let userNameList = JSON.parse(localStorage.getItem('userNameList'));
+    let emailList = JSON.parse(localStorage.getItem('emailList'));
+    let password = document.getElementById('password').value;
+    
+    if(userNameOrEmail == 'admin' && password == 'admin'){
+        alert('Login success');
+        window.location.href = "../html/admin.html";
+        return true;
+    }
+    if (userNameList.includes(userNameOrEmail) == false && emailList.includes(userNameOrEmail) == false) {
+        validateAlert.innerText = 'Username or Email not existed';
+        document.getElementById('password').value = '';
+        document.getElementById('input-text').innerText = '';
+        document.getElementById('input-text').focus();
+        return false;
+    }
+    if (userNameList.includes(userNameOrEmail)) {
+        loginValidateUserNameOrEmail(userNameList);
+    }
+    if (emailList.includes(userNameOrEmail)) {
+        loginValidateUserNameOrEmail(emailList);
+    }
+}
+function loginValidateUserNameOrEmail(listName) {
+    let userNameOrEmail = document.getElementById('input-text').value;
+    let password = document.getElementById('password').value;
+    let passwordList = JSON.parse(localStorage.getItem('passwordList'));
+
+    let index = listName.indexOf(userNameOrEmail);
+    if (password == passwordList[index]) {
+        validateAlert.innerText = '';
+        alert('Login success');
+        window.location.href = "../html/index.html";
+        return true;
+    } else {
+        validateAlert.innerText = 'password wrong';
+        document.getElementById('password').value = '';
+        document.getElementById('password').focus();
+        return false;
+    }
+}
+//***End LOGIN */
