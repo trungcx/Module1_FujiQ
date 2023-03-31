@@ -42,7 +42,8 @@ html{
 
 .hover1:hover{
     cursor: pointer;
-    opacity: 0.7;
+    opacity: 0.8;
+    font-size: large;
 }
 .element{
     display: inline-block;
@@ -101,7 +102,7 @@ html{
 
 /* Side bar */
 .side-bar{
-    background-color: green;
+    background-color: #eee;
     height: 100%;
 }
 .side-element{
@@ -109,12 +110,13 @@ html{
     margin: 8px;
     line-height: 60px;
     text-align: center;
-    background-color: #ccc;
+    background-color: aqua;
+    border-radius: 5px;
 }
 
 /* Content */
 .content{
-    background-color: green;
+    background-color: #eee;
     margin-left: 8px;
     /* padding-left: 8px; */
     margin-right: -8px;
@@ -126,7 +128,76 @@ html{
     /* height: 40px; */
     padding: 8px;
     text-align: center;
+    border-radius: 0px 0px 10px 0px;
 }
+/*content-main render item inventory */
+#content-main{
+    display: flex;
+    flex-wrap: wrap;
+    margin: 8px;
+    column-gap: 10px;
+    row-gap: 10px;
+    height: 500px;
+    overflow-y: scroll;
+}
+#content-main .item{
+    position: relative;
+    width: 200px;
+    background-color: #fff;
+    border-radius: 10px;
+}
+.item-image{
+    margin: 5px auto 5px 65px;
+    width: 70px;
+}
+.item-infor{
+    margin-left: 5px;
+    margin-right: 5px;
+}
+.item-infor-last::after{
+    content: '';
+    display: block;
+    clear: both;
+    height: 40px;
+}
+.infor-key {
+    
+}
+.infor-value{
+
+}
+.button-wrapper{
+    position: absolute;
+    bottom: 5px;
+    width: 100%;
+}
+.button-wrapper::after{
+    content: '';
+    display: block;
+    clear: both;
+}
+.clear{
+    clear: both;
+}
+.button{
+    float: left;
+    width: 40%;
+    height: 30px;
+    margin-left: 12px;
+    text-align: center;
+    line-height: 30px;
+}
+.button:hover{
+    cursor: pointer;
+    opacity: 0.8;
+}
+.delete-button{
+    background-color: red;
+}
+.edit-button{
+    background-color: blue;
+}
+
 /* Add item Modal interface */
 .modal {
     width: 300px;

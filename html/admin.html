@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="../css/admin.css">
     <link rel="stylesheet" href="../css/common.css">
     <link rel="stylesheet" href="../assets/themify-icons/themify-icons.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 
 <body>
@@ -39,7 +40,7 @@
                     <p>Customers</p>
                 </div>
 
-                <div id="inventory" class="side-element hover1">
+                <div id="inventory" class="side-element hover1" onclick="displayItemInventory()">
                     <p>Inventory</p>
                 </div>
 
@@ -53,67 +54,157 @@
                     <i class="ti-plus element"></i>
                 </div>
                 <div id="content-main">
-
-                    <!-- <input type="button" value="TEST ME" onclick="test()">
-                    <img src="" alt="" id="testImageSrc"> -->
-                    <!-- Start Modal -->
-                    <div id="modal" class="modal">
-                        <div class="modal-container">
-                            <div id="modal-close" class="modal-close hover1" onclick="closeAddModal()">
-                                <i class="ti-close"></i>
-                            </div>
-                            <div id="modal-select">
-                                <input id="modal-select-btn" type="file" onchange="selectImage(this)" name="">
-                            </div>
-                            <div class="modal-body">
-                                <div class="motal-image-wrapper">
-                                    <img id="motal-image" src="" alt="">
-                                </div>
-                                <label for="" class="modal-label">
-                                    ID:
-                                </label>
-                                <input id="item-id" type="text" class="modal-input" placeholder="">
-                                <!--  -->
-                                <label for="" class="modal-label">
-                                    Name:
-                                </label>
-                                <input id="item-name" type="text" class="modal-input" placeholder="">
-                                <!--  -->
-                                <label for="" class="modal-label">
-                                    Category:
-                                </label>
-                                <!-- <input id="category" type="text" class="modal-input" placeholder=""> -->
-                                <select id="category" class="modal-input">
-                                    <option value="Tent">Tent</option>
-                                    <option value="Shoes">Shoes</option>
-                                    <option value="Bag">Bag</option>
-                                    <option value="Glove">Glove</option>
-                                </select>
-                                <!--  -->
-                                <label for="" class="modal-label">
-                                    Price:
-                                </label>
-                                <input id="price" type="text" class="modal-input" placeholder="">
-                                <!--  -->
-                                <label for="" class="modal-label">
-                                    Stock:
-                                </label>
-                                <input id="stock" type="text" class="modal-input" placeholder="">
-                            </div>
-                            <p id="modal-alert">aaa</p>
-                            <!-- Modal Footer -->
-                            <footer class="modal-footer hover1" onclick="addItemInforToItemList()">
-                                ADD
-                            </footer>
+                    <div class="item">
+                        <img class="item-image" src="../assets/img/1.bone-sandal.jpg" alt="">
+                        <div class="item-infor">
+                            <p class="infor-key">
+                                <strong><i>ID: </i></strong>
+                                <span class="infor-value">say something about this program</span>
+                            </p>
                         </div>
-
+                        <div class="item-infor">
+                            <p class="infor-key">
+                                <strong><i>Name: </i></strong>
+                                <span class="infor-value">say something about this program</span>
+                            </p>
+                        </div>
+                        <div class="item-infor">
+                            <p class="infor-key">
+                                <strong><i>Category: </i></strong>
+                                <span class="infor-value">say something about this program</span>
+                            </p>
+                        </div>
+                        <div class="item-infor">
+                            <p class="infor-key">
+                                <strong><i>Price: </i></strong>
+                                <span class="infor-value">say something about this program</span>
+                            </p>
+                        </div>
+                        <div class="item-infor item-infor-last">
+                            <p class="infor-key">
+                                <strong><i>Stock: </i></strong>
+                                <span class="infor-value">say something about this program</span>
+                            </p>
+                        </div>
+                        <div class="button-wrapper">
+                            <div class="button delete-button" onclick="deleteItemFromItemList()">
+                                Delete
+                                <i class="fa-regular fa-trash-can"></i>
+                            </div>
+                            <div class="button edit-button">
+                                Edit
+                                <i class="fa-regular fa-pen-to-square"></i>
+                            </div>
+                        </div>
                     </div>
-                    <!-- End Modal -->
+                    <div class="item">
+                        <img class="item-image" src="../assets/img/1.bone-sandal.jpg" alt="">
+                        <div class="item-infor">
+                            <p>ID:</p>
+                            <p class="infor-value"></p>
+                        </div>
+                        <div class="item-infor">
+                            <p>Name:</p>
+                            <p class="infor-value"></p>
+                        </div>
+                        <div class="item-infor">
+                            <p>Category:</p>
+                            <p class="infor-value"></p>
+                        </div>
+                        <div class="item-infor item-infor-last">
+                            <p>Price:</p>
+                            <p class="infor-value"></p>
+                        </div>
+                        <div class="button-wrapper">
+                            <div class="button delete-button">Delete</div>
+                            <div class="button edit-button">Edit</div>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <img class="item-image" src="../assets/img/1.bone-sandal.jpg" alt="">
+                        <div class="item-infor">
+                            <p>ID:</p>
+                            <p class="infor-value"></p>
+                        </div>
+                        <div class="item-infor">
+                            <p>Name:</p>
+                            <p class="infor-value"></p>
+                        </div>
+                        <div class="item-infor">
+                            <p>Category:</p>
+                            <p class="infor-value"></p>
+                        </div>
+                        <div class="item-infor item-infor-last">
+                            <p>Price:</p>
+                            <p class="infor-value"></p>
+                        </div>
+                        <div class="button-wrapper">
+                            <div class="button delete-button">Delete</div>
+                            <div class="button edit-button">Edit</div>
+                        </div>
+                    </div>
+
+
                 </div>
+                <!-- Start Modal -->
+                <div id="modal" class="modal">
+                    <div class="modal-container">
+                        <div id="modal-close" class="modal-close hover1" onclick="closeAddModal()">
+                            <i class="ti-close"></i>
+                        </div>
+                        <div id="modal-select">
+                            <input id="modal-select-btn" type="file" onchange="selectImage(this)" name="">
+                        </div>
+                        <div class="modal-body">
+                            <div class="motal-image-wrapper">
+                                <img id="motal-image" src="" alt="">
+                            </div>
+                            <label for="" class="modal-label">
+                                ID:
+                            </label>
+                            <input id="item-id" type="text" class="modal-input" placeholder="">
+                            <!--  -->
+                            <label for="" class="modal-label">
+                                Name:
+                            </label>
+                            <input id="item-name" type="text" class="modal-input" placeholder="">
+                            <!--  -->
+                            <label for="" class="modal-label">
+                                Category:
+                            </label>
+                            <!-- <input id="category" type="text" class="modal-input" placeholder=""> -->
+                            <select id="category" class="modal-input">
+                                <option value="Tent">Tent</option>
+                                <option value="Shoes">Shoes</option>
+                                <option value="Bag">Bag</option>
+                                <option value="Glove">Glove</option>
+                            </select>
+                            <!--  -->
+                            <label for="" class="modal-label">
+                                Price:
+                            </label>
+                            <input id="price" type="text" class="modal-input" placeholder="">
+                            <!--  -->
+                            <label for="" class="modal-label">
+                                Stock:
+                            </label>
+                            <input id="stock" type="text" class="modal-input" placeholder="">
+                        </div>
+                        <p id="modal-alert">aaa</p>
+                        <!-- Modal Footer -->
+                        <footer class="modal-footer hover1" onclick="addItemInforToItemList()">
+                            ADD
+                        </footer>
+                    </div>
+
+                </div>
+                <!-- End Modal -->
             </div>
             <!-- End content -->
         </div>
-
+        <!-- xxx -->
+       
+        <!-- xxx -->
     </div>
     <!-- The actual snackbar -->
     <div id="snackbar"></div>
