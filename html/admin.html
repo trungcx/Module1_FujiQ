@@ -1,20 +1,127 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin</title>
     <link rel="stylesheet" href="../css/admin.css">
+    <link rel="stylesheet" href="../css/common.css">
+    <link rel="stylesheet" href="../assets/themify-icons/themify-icons.css">
 </head>
-<body>
-    <!-- <input type="file" onchange="changeImage(this)" name="" id="">
-    <img id="image" src="" alt=""> -->
-        
 
+<body>
+    <div class="container">
+        <!-- Start Header -->
+        <div class="row margin-8 header">
+            <div id="admin-text" class="col col-third element hover1">
+                <p>Admin Page</p>
+            </div>
+            <div id="shop-page-wrapper" class="col col-half element hover1">
+                <p>Shopping page</p>
+                <i class="ti-shift-right"></i>
+            </div>
+            <div id="admin-avatar" class="col-one element">
+                <img class="image avatar" src="../assets/img/avatar/admin.JPG" alt="">
+            </div>
+        </div>
+        <!-- End Header -->
+
+        <div class="margin-8 row side-content-wrapper">
+            <!-- Start Side bar -->
+            <div class="side-bar col col-third element">
+                <div id="dash-board" class="side-element hover1">
+                    <p>Dash board</p>
+                </div>
+
+                <div id="customers" class="side-element hover1">
+                    <p>Customers</p>
+                </div>
+
+                <div id="inventory" class="side-element hover1">
+                    <p>Inventory</p>
+                </div>
+
+            </div>
+            <!-- End side bar -->
+
+            <!-- Start Content -->
+            <div id="content" class="content col col-nine element">
+                <div id="add-item-button" class="row hover1" onclick="openModal()">
+                    <p class="element">Add item</p>
+                    <i class="ti-plus element"></i>
+                </div>
+                <div id="content-main">
+
+                    <!-- <input type="button" value="TEST ME" onclick="test()">
+                    <img src="" alt="" id="testImageSrc"> -->
+                    <!-- Start Modal -->
+                    <div id="modal" class="modal">
+                        <div class="modal-container">
+                            <div id="modal-close" class="modal-close hover1" onclick="closeAddModal()">
+                                <i class="ti-close"></i>
+                            </div>
+                            <div id="modal-select">
+                                <input id="modal-select-btn" type="file" onchange="selectImage(this)" name="">
+                            </div>
+                            <div class="modal-body">
+                                <div class="motal-image-wrapper">
+                                    <img id="motal-image" src="" alt="">
+                                </div>
+                                <label for="" class="modal-label">
+                                    ID:
+                                </label>
+                                <input id="item-id" type="text" class="modal-input" placeholder="">
+                                <!--  -->
+                                <label for="" class="modal-label">
+                                    Name:
+                                </label>
+                                <input id="item-name" type="text" class="modal-input" placeholder="">
+                                <!--  -->
+                                <label for="" class="modal-label">
+                                    Category:
+                                </label>
+                                <!-- <input id="category" type="text" class="modal-input" placeholder=""> -->
+                                <select id="category" class="modal-input">
+                                    <option value="Tent">Tent</option>
+                                    <option value="Shoes">Shoes</option>
+                                    <option value="Bag">Bag</option>
+                                    <option value="Glove">Glove</option>
+                                </select>
+                                <!--  -->
+                                <label for="" class="modal-label">
+                                    Price:
+                                </label>
+                                <input id="price" type="text" class="modal-input" placeholder="">
+                                <!--  -->
+                                <label for="" class="modal-label">
+                                    Stock:
+                                </label>
+                                <input id="stock" type="text" class="modal-input" placeholder="">
+                            </div>
+                            <p id="modal-alert">aaa</p>
+                            <!-- Modal Footer -->
+                            <footer class="modal-footer hover1" onclick="addItemInforToItemList()">
+                                ADD
+                            </footer>
+                        </div>
+
+                    </div>
+                    <!-- End Modal -->
+                </div>
+            </div>
+            <!-- End content -->
+        </div>
+
+    </div>
+    <!-- The actual snackbar -->
+    <div id="snackbar"></div>
 
 
 
     <script src="../js/admin.js"></script>
+    <script src="../js/common.js"></script>
 </body>
+
 </html>

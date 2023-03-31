@@ -62,6 +62,19 @@ function eyeToggleFnt() {
         password.type = 'password';
     }
 }
+
+//Enter key pressed
+window.addEventListener('keypress',(e)=>{
+    if(e.key === "Enter"){
+        if(document.title == "Login"){
+            validateAndLogin();
+        }
+        if(document.title == "Sign Up"){
+            validateAndSignUp();
+        }
+    }
+})
+
 // COMMON END
 
 
@@ -83,7 +96,8 @@ function validateAndSignUp() {
                     if (validatePassword(password, 5, 10)) {
                         // pushTempUserInforToLocalStorage();                      
                         pushTempUserInforToUserInforList();
-                        alert("Sign Up Successful !");
+                        let message = 'Sign Up Successful !'
+                        showSnackBar(message)
                         window.location.href = "../html/login.html";
                     }
                 }
@@ -237,8 +251,10 @@ function validateAndLogin() {
     let password = document.getElementById('password').value;
     
     if(userNameOrEmail == 'admin' && password == 'admin'){
-        alert('Login success');
+        let message = 'Login success'
+        showSnackBar(message)
         window.location.href = "../html/admin.html";
+        sessionStorage.setItem('whoIsLogIn','admin');
         return true;
     }
     if (userNameList.includes(userNameOrEmail) == false && emailList.includes(userNameOrEmail) == false) {
@@ -263,8 +279,10 @@ function loginValidateUserNameOrEmail(listName) {
     let index = listName.indexOf(userNameOrEmail);
     if (password == passwordList[index]) {
         validateAlert.innerText = '';
-        alert('Login success');
+        let message = 'Login success'
+        showSnackBar(message)
         window.location.href = "../html/index.html";
+        sessionStorage.setItem('whoIsLogIn','user');
         return true;
     } else {
         validateAlert.innerText = 'password wrong';
