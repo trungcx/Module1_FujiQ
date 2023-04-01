@@ -61,7 +61,7 @@ function displayItemInventory() {
                                 Delete
                                 <i class="fa-regular fa-trash-can"></i>
                             </div>
-                            <div class="button edit-button">
+                            <div class="button edit-button" onclick="openModalEdit('${item.itemId}')">
                                 Edit
                                 <i class="fa-regular fa-pen-to-square"></i>
                             </div>
@@ -71,13 +71,8 @@ function displayItemInventory() {
     })
     inventory.innerHTML = result;
 }
-//Edit Item In Inventory
-function editItem(index){
-    
-}
 //Delete Item In Inventory
 function deleteItemFromItemList(itemId){
-    console.log('delete here');
     let itemList = JSON.parse(localStorage.getItem('itemList'));
     let itemIdList = itemList.map((item,index)=>{
         return item.itemId;
@@ -139,7 +134,6 @@ function addItemInforToItemList() {
     resetModal();
     return itemList;
 }
-
 // Random item ID generator
 function randomItemIdGenerator() {
     let itemIdList = JSON.parse(localStorage.getItem('itemIdList'))
@@ -155,6 +149,10 @@ function randomItemIdGenerator() {
     }
     document.getElementById('item-id').value = id;
     return id;
+}
+// Jump to shopping page
+function jumpToShoppingPage(){
+    window.location.href = "../html/index.html"
 }
 // Modal
 function openModal() {
@@ -173,4 +171,47 @@ function resetModal() {
     })
     document.getElementById('motal-image').src = '';
     document.getElementById('modal-select-btn').value = '';
+}
+
+
+//***Edit Item In Inventory****/
+function openModalEdit(itemId){
+    document.getElementById('modal').style.display = 'flex';
+    let modalFooter = document.getElementById('modal-footer');
+
+    modalFooter.onclick = editItem;
+    modalFooter.innerHTML = 'SAVE';
+    displayItemToEditModal(itemId);
+}
+function editItem(index){
+    console.log('editItem() hehe');
+}
+function displayItemToEditModal(itemId){
+    let elementIdNameList = ['item-id', 'item-name', 'category', 'price', 'stock', 'motal-image'];
+    let itemList = JSON.parse(localStorage.getItem('itemList'));
+    let modalIdInput = document.getElementById('item-id');
+    
+    let item = getItemObjectInItemListById(itemId);
+    let itemValue = Object.values(item);
+
+    elementIdNameList.forEach((elementIdName,index)=>{
+        if(elementIdName == 'motal-image'){
+            document.getElementById(elementIdName).src = itemValue[index];
+        } else {
+            document.getElementById(elementIdName).value = itemValue[index];
+        }
+        
+    })
+    modalIdInput.readOnly = true;
+
+}
+function getItemObjectInItemListById(itemId){
+    let itemList = JSON.parse(localStorage.getItem('itemList'));
+    let modalIdInput = document.getElementById('item-id');
+    
+    let itemIdList = itemList.map((item)=>{
+        return item.itemId;
+    })
+    let index = itemIdList.indexOf(itemId);
+    return itemList[index];
 }

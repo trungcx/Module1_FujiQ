@@ -19,7 +19,7 @@
             <div id="admin-text" class="col col-third element hover1">
                 <p>Admin Page</p>
             </div>
-            <div id="shop-page-wrapper" class="col col-half element hover1">
+            <div id="shop-page-wrapper" class="col col-half element hover1" onclick="jumpToShoppingPage()">
                 <p>Shopping page</p>
                 <i class="ti-shift-right"></i>
             </div>
@@ -91,7 +91,7 @@
                                 Delete
                                 <i class="fa-regular fa-trash-can"></i>
                             </div>
-                            <div class="button edit-button">
+                            <div class="button edit-button" onclick="openModalEdit()">
                                 Edit
                                 <i class="fa-regular fa-pen-to-square"></i>
                             </div>
@@ -190,9 +190,9 @@
                             </label>
                             <input id="stock" type="text" class="modal-input" placeholder="">
                         </div>
-                        <p id="modal-alert">aaa</p>
+                        <p id="modal-alert"></p>
                         <!-- Modal Footer -->
-                        <footer class="modal-footer hover1" onclick="addItemInforToItemList()">
+                        <footer id="modal-footer" class="modal-footer hover1" onclick="addItemInforToItemList()">
                             ADD
                         </footer>
                     </div>
@@ -210,7 +210,7 @@
     <div id="snackbar"></div>
 
 
-
+    
     <script src="../js/admin.js"></script>
     <script src="../js/common.js"></script>
 </body>
