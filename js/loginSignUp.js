@@ -1,21 +1,3 @@
-function test() {
-    // let obj = {
-    //     car: ['honda','toyota']
-    // }
-    // obj.car.push('BMW');
-    // console.log(obj);
-
-    // let dog = [3, 4, 5]
-    // let arr = [1, 'hello', { flower: 'rose' }, [99, 97], dog];
-    // localStorage.setItem('test', JSON.stringify(arr));
-
-    // console.log(arr);
-    // for (const value of arr) {
-    //     console.log(value);
-    // }
-
-    // divideUserInforList();
-}
 
 //***COMMON START */
 //define
@@ -31,8 +13,8 @@ function userObject() {
     this.userName = '';
     this.email = '';
     this.password = '';
-    type: "user";
-    status: "normal"
+    this.type = "user";
+    this.status = "normal"
 }
 function item() {
     this.itemId = '';
@@ -93,11 +75,11 @@ function validateAndSignUp() {
         if (validateFullName(fullName, 5, 30)) {
             if (validateUserName(userName)) {
                 if (ValidateEmail(email)) {
-                    if (validatePassword(password, 5, 10)) {
-                        // pushTempUserInforToLocalStorage();                      
+                    if (validatePassword(password, 5, 10)) {                    
                         pushTempUserInforToUserInforList();
-                        let message = 'Sign Up Successful !'
+                        let message = 'Sign Up Successful !';
                         showSnackBar(message)
+                        removeChildListOfUserInforList();
                         window.location.href = "../html/login.html";
                     }
                 }
@@ -225,6 +207,12 @@ function validatePassword(password, lenMin, lenMax) {
     tempUserInfor[4] = password;
     return password;
 }
+function removeChildListOfUserInforList(){
+    let listNameArr = ['userIdList', 'fullNameList', 'userNameList', 'emailList', 'passwordList'];
+    listNameArr.forEach(listName => {
+        localStorage.removeItem(listName);
+    });
+}
 // Random userID generator
 function randomUserIdGenerator() {
     let userIdList = JSON.parse(localStorage.getItem('userIdList'))
@@ -292,3 +280,7 @@ function loginValidateUserNameOrEmail(listName) {
     }
 }
 //***End LOGIN */
+function test(){
+    let message = 'Snack bar test';
+    showSnackBar(message);
+}

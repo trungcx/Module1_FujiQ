@@ -2,6 +2,9 @@ function test() {
     // debugger;
 
 }
+/*** Window ONLOAD */
+window.onload = resetModal();
+window.onload = displayItemInventory();
 
 //*** COMMON */
 function item() {
@@ -84,7 +87,6 @@ function deleteItemFromItemList(itemId){
 }
 //Change image fnt
 function selectImage(image) {
-    randomItemIdGenerator();
     let elementInput = image.files[0];
     let result = URL.createObjectURL(elementInput);
     document.getElementById('motal-image').src = result;
@@ -132,6 +134,8 @@ function addItemInforToItemList() {
     showSnackBar(message);
     //reset modal
     resetModal();
+    //Generate item id for next item
+    randomItemIdGenerator();
     return itemList;
 }
 // Random item ID generator
@@ -157,6 +161,7 @@ function jumpToShoppingPage(){
 // Modal
 function openModal() {
     document.getElementById('modal').style.display = 'flex';
+    randomItemIdGenerator();
 }
 function closeAddModal() {
     document.getElementById('modal').style.display = 'none';
@@ -171,20 +176,49 @@ function resetModal() {
     })
     document.getElementById('motal-image').src = '';
     document.getElementById('modal-select-btn').value = '';
+    let modalFooter = document.getElementById('modal-footer');
+    modalFooter.onclick = addItemInforToItemList;
+    modalFooter.innerHTML = 'ADD';
+    localStorage.removeItem('imgSourceOneTime');
 }
 
 
 //***Edit Item In Inventory****/
 function openModalEdit(itemId){
-    document.getElementById('modal').style.display = 'flex';
+    openModal();
     let modalFooter = document.getElementById('modal-footer');
 
     modalFooter.onclick = editItem;
     modalFooter.innerHTML = 'SAVE';
     displayItemToEditModal(itemId);
 }
-function editItem(index){
+function editItem(){
     console.log('editItem() hehe');
+    // debugger;
+    let elementIdNameList = ['item-id', 'item-name', 'category', 'price', 'stock'];
+    let modalIdInput = document.getElementById('item-id');
+    let itemList = JSON.parse(localStorage.getItem('itemList'));
+    let imgSrc = JSON.parse(localStorage.getItem('imgSourceOneTime'));
+
+    let item = getItemObjectInItemListById(modalIdInput.value);
+    let itemIndexInItemList = getIndexOfItemInItemList(item);
+    let itemKeys = Object.keys(item);
+
+    elementIdNameList.forEach((elementIdName,index) => {
+        item[itemKeys[index]] = document.getElementById(elementIdName).value;
+    });
+    if(imgSrc== null){
+
+    }else{
+        item.imgSource = imgSrc;
+    }
+    itemList.splice(itemIndexInItemList,1,item);
+    localStorage.setItem('itemList',JSON.stringify(itemList));
+    //Show item
+    displayItemInventory();
+    //Show message
+    let message = "Save change successed";
+    showSnackBar(message);
 }
 function displayItemToEditModal(itemId){
     let elementIdNameList = ['item-id', 'item-name', 'category', 'price', 'stock', 'motal-image'];
@@ -214,4 +248,11 @@ function getItemObjectInItemListById(itemId){
     })
     let index = itemIdList.indexOf(itemId);
     return itemList[index];
+}
+function getIndexOfItemInItemList(item){
+    let itemList = JSON.parse(localStorage.getItem('itemList'));
+    let itemIdList = itemList.map((item)=>{
+        return item.itemId;
+    })
+    return itemIdList.indexOf(item.itemId);
 }
