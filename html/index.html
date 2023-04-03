@@ -1,12 +1,117 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Workman-Shopping</title>
+    <link rel="stylesheet" href="../css/index.css">
+    <link rel="stylesheet" href="../assets/themify-icons/themify-icons.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
+
 <body>
-    
+    <div class="container grid">
+        <div class="top-logo grid-item hover2">
+            <img src="https://workman.jp/img/share/logo_workman_mark.svg" alt="wm-logo">
+            <p>WORKMAN</p>
+        </div>
+
+        <div class="top-nav grid-item">
+            <div class="top-search">
+                <input class="text-search" type="text" placeholder="Search">
+                <i class="ti-search hover2"></i>
+            </div>
+
+            <div class="top-shortcut">
+                <i class="ti-user hover2"></i>
+                <i class="ti-heart hover2"></i>
+                <div class="cart-wrapper hover2">
+                    <i class="ti-shopping-cart"><span id="item-number">0</span></i>
+                </div>
+
+
+            </div>
+
+        </div>
+
+        <div class="side-bar grid-item">
+            <div class="category-menu hover2">
+                <p><strong>CATEGORY</strong></p>
+                <i class="ti-menu"></i>
+            </div>
+            <div class="category-item hover2 clear">
+                <p class="category-name">Tent</p>
+                <i class="ti-angle-right"></i>
+            </div>
+            <div class="category-item hover2 clear">
+                <p class="category-name">Shoes</p>
+                <i class="ti-angle-right"></i>
+            </div>
+            <div class="category-item hover2 clear">
+                <p class="category-name">Bag</p>
+                <i class="ti-angle-right"></i>
+            </div>
+            <div class="category-item hover2 clear">
+                <p class="category-name">Gloves</p>
+                <i class="ti-angle-right"></i>
+            </div>
+        </div>
+
+        <div class="content grid-item">
+            <div class="sort-wrapper">
+                <strong>Sort by:</strong>
+                <p class="sort-item">
+                    Price (Low to high)
+                </p>
+                <p class="sort-item">
+                    Price (High to low)
+                </p>
+                <p class="sort-item">
+                    Avg. Customers Review
+                </p>
+            </div>
+            <div id="main-content" class="main-content">
+                <div class="product">
+                    <img class="product-img infor" src="../assets/img/1.bone-sandal.jpg" alt="">
+                    <p class="product-name infor">1Say something about this product</p>
+                    <p class="product-rating infor">
+                        <i class="fa-regular fa-star"></i>
+                        <i class="fa-regular fa-star"></i>
+                        <i class="fa-regular fa-star"></i>
+                        <i class="fa-regular fa-star"></i>
+                        <i class="fa-regular fa-star"></i>
+                    </p>
+                    <p class="product-price infor">99 $</p>
+                    <div class="product-add infor">
+                        <i class="ti-heart hover2"></i>
+                        <i class="ti-shopping-cart hover2"></i>
+                    </div>
+                </div>
+                <!-- <i class="fa-solid fa-star" style="color: #f4ec10;"></i>
+                <i class="fa-regular fa-star"></i>
+                <i class="fa-solid fa-star-half-stroke" style="color: #f4ec10;"></i> -->
+            </div>
+        </div>
+
+        <!-- Start Footer -->
+        <footer class="footer grid-item">
+            <div class="social-wrapper">
+                <i class="ti-facebook"></i>
+                <i class="ti-twitter-alt"></i>
+                <i class="ti-pinterest-alt"></i>
+                <i class="ti-youtube"></i>
+            </div>
+            <div class="copyright">Copyright (c) WORKMAN corporation. All right reserved.</div>
+        </footer>
+    </div>
+
+    <!-- scrip -->
+    <script src="../js/index.js"></script>
+    <script src="../js/common.js"></script>
 </body>
+
 </html>

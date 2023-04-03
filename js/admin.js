@@ -239,20 +239,20 @@ function displayItemToEditModal(itemId){
     modalIdInput.readOnly = true;
 
 }
-function getItemObjectInItemListById(itemId){
-    let itemList = JSON.parse(localStorage.getItem('itemList'));
-    let modalIdInput = document.getElementById('item-id');
+// function getItemObjectInItemListById(itemId){
+//     let itemList = JSON.parse(localStorage.getItem('itemList'));
+//     let modalIdInput = document.getElementById('item-id');
     
-    let itemIdList = itemList.map((item)=>{
-        return item.itemId;
-    })
-    let index = itemIdList.indexOf(itemId);
-    return itemList[index];
-}
-function getIndexOfItemInItemList(item){
-    let itemList = JSON.parse(localStorage.getItem('itemList'));
-    let itemIdList = itemList.map((item)=>{
-        return item.itemId;
-    })
-    return itemIdList.indexOf(item.itemId);
-}
+//     let itemIdList = itemList.map((item)=>{
+//         return item.itemId;
+//     })
+//     let index = itemIdList.indexOf(itemId);
+//     return itemList[index];
+// }
+// function getIndexOfItemInItemList(item){
+//     let itemList = JSON.parse(localStorage.getItem('itemList'));
+//     let itemIdList = itemList.map((item)=>{
+//         return item.itemId;
+//     })
+//     return itemIdList.indexOf(item.itemId);
+// }
