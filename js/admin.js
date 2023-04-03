@@ -156,7 +156,7 @@ function randomItemIdGenerator() {
 }
 // Jump to shopping page
 function jumpToShoppingPage(){
-    window.location.href = "../html/index.html"
+    window.location.href = "../index.html"
 }
 // Modal
 function openModal() {

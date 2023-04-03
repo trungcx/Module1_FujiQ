@@ -243,9 +243,9 @@ html *{
 /* .footer div{
     display: inline-block;
 } */
-/* .footer .social-wrapper>i{
-    
-} */
+.footer .social-wrapper i{
+    margin: 0px 3px;
+}
 /* .footer .copyright{
     width: 713px;
     text-align: right;

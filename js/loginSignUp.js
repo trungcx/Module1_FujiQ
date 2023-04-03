@@ -279,7 +279,7 @@ function loginValidateUserNameOrEmail(listName) {
         validateAlert.innerText = '';
         let message = 'Login success'
         showSnackBar(message)
-        window.location.href = "../html/index.html";
+        window.location.href = "../index.html";
         sessionStorage.setItem('whoIsLogIn','user');
         return true;
     } else {

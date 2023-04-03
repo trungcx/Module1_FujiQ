@@ -6,8 +6,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Workman-Shopping</title>
-    <link rel="stylesheet" href="../css/index.css">
-    <link rel="stylesheet" href="../assets/themify-icons/themify-icons.css">
+    <link rel="stylesheet" href="./css/index.css">
+    <link rel="stylesheet" href="./css/common.css">
+    <link rel="stylesheet" href="./assets/themify-icons/themify-icons.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
         integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -39,38 +40,39 @@
         </div>
 
         <div class="side-bar grid-item">
-            <div class="category-menu hover2">
+            <div class="category-menu hover2" onclick="displayItemInItemList()">
                 <p><strong>CATEGORY</strong></p>
                 <i class="ti-menu"></i>
             </div>
-            <div class="category-item hover2 clear">
+            <div class="category-item hover2 clear" onclick="displayItemByCategory('Tent')">
                 <p class="category-name">Tent</p>
                 <i class="ti-angle-right"></i>
             </div>
-            <div class="category-item hover2 clear">
+            <div class="category-item hover2 clear" onclick="displayItemByCategory('Shoes')">
                 <p class="category-name">Shoes</p>
                 <i class="ti-angle-right"></i>
             </div>
-            <div class="category-item hover2 clear">
+            <div class="category-item hover2 clear" onclick="displayItemByCategory('Bag')">
                 <p class="category-name">Bag</p>
                 <i class="ti-angle-right"></i>
             </div>
-            <div class="category-item hover2 clear">
-                <p class="category-name">Gloves</p>
+            <div class="category-item hover2 clear" onclick="displayItemByCategory('Glove')">
+                <p class="category-name">Glove</p>
                 <i class="ti-angle-right"></i>
             </div>
+            <input type="button" value="TEST" onclick="testme()">
         </div>
 
         <div class="content grid-item">
             <div class="sort-wrapper">
                 <strong>Sort by:</strong>
-                <p class="sort-item">
+                <p class="sort-item" onclick="sortItem('lowToHigh')">
                     Price (Low to high)
                 </p>
-                <p class="sort-item">
+                <p class="sort-item" onclick="sortItem('highToLow')">
                     Price (High to low)
                 </p>
-                <p class="sort-item">
+                <p class="sort-item" onclick="sortItem('avgReview')">
                     Avg. Customers Review
                 </p>
             </div>
@@ -108,10 +110,12 @@
             <div class="copyright">Copyright (c) WORKMAN corporation. All right reserved.</div>
         </footer>
     </div>
-
+    <!-- The actual snackbar -->
+    <div id="snackbar"></div>
     <!-- scrip -->
-    <script src="../js/common.js"></script>
-    <script src="../js/index.js"></script>
+    <script src="./js/common.js"></script>
+    <script src="./js/index.js"></script>
+    
     
 </body>
 
