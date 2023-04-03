@@ -16,21 +16,21 @@
 
 <body>
     <div class="container grid">
-        <div class="top-logo grid-item hover2">
+        <div class="top-logo grid-item hover2" onclick="scrollToTop()">
             <img src="https://workman.jp/img/share/logo_workman_mark.svg" alt="wm-logo">
             <p>WORKMAN</p>
         </div>
 
         <div class="top-nav grid-item">
             <div class="top-search">
-                <input class="text-search" type="text" placeholder="Search">
-                <i class="ti-search hover2"></i>
+                <input id="text-search" class="text-search" type="text" placeholder="Search">
+                <i id="search-icon" class="ti-search hover2" onclick="searchItem()"></i>
             </div>
 
             <div class="top-shortcut">
                 <i id="ti-user-icon" class="ti-user hover2" onclick=""></i>
                 <i class="ti-heart hover2"></i>
-                <div class="cart-wrapper hover2">
+                <div class="cart-wrapper hover2" onclick="jumpToCartPage()">
                     <i class="ti-shopping-cart"><span id="item-number">0</span></i>
                 </div>
 
@@ -60,7 +60,7 @@
                 <p class="category-name">Glove</p>
                 <i class="ti-angle-right"></i>
             </div>
-            <input type="button" value="TEST" onclick="testme()">
+            <!-- <input type="button" value="TEST" onclick="testme()"> -->
         </div>
 
         <div class="content grid-item">

@@ -21,7 +21,7 @@ function logInCheck() {
         return false;
     }
 }
-// ****
+// **** DISPLAY ***//
 function displayItemInItemList() {
     let mainContent = document.getElementById('main-content');
     let itemList = JSON.parse(localStorage.getItem('itemList'));
@@ -58,7 +58,6 @@ function displayItemInItemList() {
     }
 }
 function displayItemByCategory(category) {
-    console.log(category);
     let mainContent = document.getElementById('main-content');
     let itemList = JSON.parse(localStorage.getItem('itemList'));
     let result = '';
@@ -90,6 +89,38 @@ function displayItemByCategory(category) {
     localStorage.setItem('displayedItemId', JSON.stringify(displayedItemId));
 
 }
+function displayItemByAnyItemArray(myArr) {
+    let mainContent = document.getElementById('main-content');
+    let result = '';
+    let displayedItemId = [];
+    myArr.forEach((item) => {
+        displayedItemId.push(item.itemId);
+        result += `
+            <div class="product">
+            <img class="product-img infor" src="${item.imgSource}" alt="">
+            <p class="product-name infor">${item.itemName}</p>
+            <p class="product-rating infor">
+                <i class="fa-regular fa-star"></i>
+                <i class="fa-regular fa-star"></i>
+                <i class="fa-regular fa-star"></i>
+                <i class="fa-regular fa-star"></i>
+                <i class="fa-regular fa-star"></i>
+            </p>
+            <p class="product-price infor">${item.price} $</p>
+            <div class="product-add infor clear">
+                <i class="ti-heart hover2" onclick="addItemToFavorite('${item.itemId}')"></i>
+                <i class="ti-shopping-cart hover2" onclick="addItemToCart('${item.itemId}')"></i>
+            </div>
+            </div>
+            `
+    });
+    mainContent.innerHTML = result;
+    localStorage.setItem('displayedItemId', JSON.stringify(displayedItemId));
+}
+function displayItemByAnyItemIdArray(idArray) {
+    //Do later
+}
+// *** ADD ITEM ***//
 function addItemToCart(itemId) {
     let userInforList = JSON.parse(localStorage.getItem('userInforList'));
     let logInId = sessionStorage.getItem('logInId');
@@ -109,6 +140,8 @@ function addItemToCart(itemId) {
         if (itemsInCart.includes(itemId)) {
             return true;
         } else {
+            let message = 'Item was added to cart !'
+            showSnackBar(message);
             itemsInCart.push(itemId);
             userInforList[indexOfUser][1] = itemsInCart;
             localStorage.setItem('userInforList', JSON.stringify(userInforList));
@@ -121,6 +154,7 @@ function addItemToCart(itemId) {
 function addItemToFavorite(itemId) {
     // Do it later. Optional
 }
+// *** SORT ***//
 function sortItem(sortBy) {
     let mainContent = document.getElementById('main-content');
     let itemList = JSON.parse(localStorage.getItem('itemList'));
@@ -174,7 +208,25 @@ function sortItem(sortBy) {
 
 
 }
-//Session Storage
+// *** SEARCH ***//
+function searchItem() {
+    let inputSearch = document.getElementById('text-search').value;
+    let itemList = JSON.parse(localStorage.getItem('itemList'));
+    let searchResult = [];
+    itemList.forEach(item => {
+        let itemNameLowerCase = item.itemName.toLowerCase();
+        let inputSearchLowerCase = inputSearch.toLowerCase();
+        if (itemNameLowerCase.includes(inputSearchLowerCase)) {
+            searchResult.push(item);
+        }
+    });
+    if (searchResult.length == 0) {
+        document.getElementById('main-content').innerHTML = 'No item found'
+    } else {
+        displayItemByAnyItemArray(searchResult);
+    }
+}
+//***Session Storage****//
 function setItemsInCartToSessionStorage() {
     let userInforList = JSON.parse(localStorage.getItem('userInforList'));
     let logInId = sessionStorage.getItem('logInId');
@@ -186,7 +238,14 @@ function setItemsInCartToSessionStorage() {
     sessionStorage.setItem('itemsInCart', JSON.stringify(itemsInCart));
     return itemsInCart;
 }
-//
+// SCROLL TO TOP
+function scrollToTop() {
+    window.scrollTo(0, 0);
+}
+// Jump to cart page
+function jumpToCartPage() {
+    window.location.href = './html/cart.html';
+}
 function testme() {
     let userInforList = JSON.parse(localStorage.getItem('userInforList'));
     userInforList[0].splice(1, 1);
