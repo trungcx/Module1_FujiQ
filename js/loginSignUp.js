@@ -233,9 +233,11 @@ function randomUserIdGenerator() {
 
 //***Start LOGIN */
 function validateAndLogin() {
+    divideUserInforList();
     let userNameOrEmail = document.getElementById('input-text').value;
     let userNameList = JSON.parse(localStorage.getItem('userNameList'));
     let emailList = JSON.parse(localStorage.getItem('emailList'));
+    let userIdList = JSON.parse(localStorage.getItem('userIdList'));
     let password = document.getElementById('password').value;
     
     if(userNameOrEmail == 'admin' && password == 'admin'){
@@ -253,10 +255,18 @@ function validateAndLogin() {
         return false;
     }
     if (userNameList.includes(userNameOrEmail)) {
-        loginValidateUserNameOrEmail(userNameList);
+        if(loginValidateUserNameOrEmail(userNameList)){
+            let logInId = userIdList[userNameList.indexOf(userNameOrEmail)];
+            sessionStorage.setItem('logInId',`${logInId}`);
+            return true;
+        };
     }
     if (emailList.includes(userNameOrEmail)) {
-        loginValidateUserNameOrEmail(emailList);
+        if(loginValidateUserNameOrEmail(emailList)){
+            let logInId = userIdList[emailList.indexOf(userNameOrEmail)];
+            sessionStorage.setItem('logInId',`${logInId}`);
+            return true;
+        };
     }
 }
 function loginValidateUserNameOrEmail(listName) {
