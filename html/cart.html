@@ -16,7 +16,7 @@
 
 <body>
     <div class="container grid">
-        <div class="top-logo grid-item hover2" onclick="scrollToTop()">
+        <div class="top-logo grid-item hover2" onclick="jumpToShoppingPage()">
             <img src="https://workman.jp/img/share/logo_workman_mark.svg" alt="wm-logo">
             <p>WORKMAN</p>
         </div>
@@ -43,27 +43,27 @@
                 <p class="cart-price">Price</p>
             </div>
             <div id="cart-item-wrapper" class="cart-item-wrapper">
-                <div class="cart-item">
-                    <input class="checkbox" type="checkbox" name="">
+                <!-- <div class="cart-item">
+                    <input class="checkbox" type="checkbox" name="" checked>
                     <img class="cart-img" src="../assets/img/11.durable-solo.jpg" alt="">
                     <div class="item-infor">
                         <p class="item-name">item name</p>
                         <p class="stock">stock</p>
                         <div class="button-wrapper">
-                            <input class="quantity" type="text">
+                            <input class="quantity" type="text" value="1">
                             <p class="delete hover3">Delete</p>
                             <p class="save hover3">Save for later</p>
                         </div>
                     </div>
                     <div class="price">Price</div>
-                </div>
+                </div> -->
             </div>
         </div>
         <!-- End : Cart wrapper -->
 
         <!-- Start : Subtotal -->
         <div class="subtotal grid-item hover2">
-            Subtotal
+            <p id="subtotalMoney">Subtotal: <br> <span style="font-size: 22px; margin-top: 15px;"></span></p>
             <div class="checkout">Proceed to Checkout</div>
         </div>
         <!-- End : Subtotal -->
@@ -80,7 +80,7 @@
         </footer>
     </div>
 
-
+    <!-- <input type="button" value="TEST ME" onclick="deleteItemInCart()"> -->
     <!-- The actual snackbar -->
     <div id="snackbar"></div>
     <!-- Script -->

@@ -236,7 +236,9 @@ html * {
 .subtotal {
 
 }
-
+#subtotalMoney{
+    /* font-size: 20px; */
+}
 .subtotal .checkout {
     margin: 5px auto;
     left: 5%;
