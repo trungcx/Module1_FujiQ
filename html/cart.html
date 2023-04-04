@@ -8,14 +8,77 @@
     <title>Your Cart</title>
     <link rel="stylesheet" href="../css/common.css">
     <link rel="stylesheet" href="../css/cart.css">
-    <link rel="stylesheet" href="./assets/themify-icons/themify-icons.css">
+    <link rel="stylesheet" href="../assets/themify-icons/themify-icons.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
         integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 
 <body>
-    
+    <div class="container grid">
+        <div class="top-logo grid-item hover2" onclick="scrollToTop()">
+            <img src="https://workman.jp/img/share/logo_workman_mark.svg" alt="wm-logo">
+            <p>WORKMAN</p>
+        </div>
+
+        <div class="top-nav grid-item">
+            <div class="top-search">
+                <input id="text-search" class="text-search" type="text" placeholder="Search">
+                <i id="search-icon" class="ti-search hover2" onclick="searchItem()"></i>
+            </div>
+
+            <div class="top-shortcut">
+                <i id="ti-user-icon" class="ti-user hover2" onclick=""></i>
+                <i class="ti-heart hover2"></i>
+                <div class="cart-wrapper hover2" onclick="jumpToCartPage()">
+                    <i class="ti-shopping-cart"><span id="item-number">0</span></i>
+                </div>
+            </div>
+        </div>
+        <!-- Start : Cart wrapper -->
+        <div class="cart-content grid-item">
+            <div class="cart-top">
+                <p class="cart-label">Shopping cart</p>
+                <p class="cart-select">Select all items</p>
+                <p class="cart-price">Price</p>
+            </div>
+            <div id="cart-item-wrapper" class="cart-item-wrapper">
+                <div class="cart-item">
+                    <input class="checkbox" type="checkbox" name="">
+                    <img class="cart-img" src="../assets/img/11.durable-solo.jpg" alt="">
+                    <div class="item-infor">
+                        <p class="item-name">item name</p>
+                        <p class="stock">stock</p>
+                        <div class="button-wrapper">
+                            <input class="quantity" type="text">
+                            <p class="delete hover3">Delete</p>
+                            <p class="save hover3">Save for later</p>
+                        </div>
+                    </div>
+                    <div class="price">Price</div>
+                </div>
+            </div>
+        </div>
+        <!-- End : Cart wrapper -->
+
+        <!-- Start : Subtotal -->
+        <div class="subtotal grid-item hover2">
+            Subtotal
+            <div class="checkout">Proceed to Checkout</div>
+        </div>
+        <!-- End : Subtotal -->
+
+        <!-- Start Footer -->
+        <footer class="footer grid-item">
+            <div class="social-wrapper">
+                <i class="ti-facebook"></i>
+                <i class="ti-twitter-alt"></i>
+                <i class="ti-pinterest-alt"></i>
+                <i class="ti-youtube"></i>
+            </div>
+            <div class="copyright">Copyright (c) WORKMAN corporation. All right reserved.</div>
+        </footer>
+    </div>
 
 
     <!-- The actual snackbar -->
