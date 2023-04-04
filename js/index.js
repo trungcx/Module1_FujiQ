@@ -252,3 +252,10 @@ function testme() {
     localStorage.setItem('userInforList', JSON.stringify(userInforList));
 
 }
+function jumpToLogIn(){
+    let logInId = sessionStorage.getItem('logInId');
+    if(logInId == null){
+        window.location.href = './html/login.html';
+    }
+    
+}
