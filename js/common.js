@@ -28,11 +28,34 @@ function getIndexOfItemInItemList(item) {
   })
   return itemIdList.indexOf(item.itemId);
 }
+
+/**
+ * @param    'mainCart', 'favorite', 'saved', 'buyAgain' =>chose one
+ * @returns Array of Item Object in itemList by logInId
+ */
+function getItemObjectInItemListByLoginId(whatCart) {
+  let cartNameArr = ['mainCart', 'favorite', 'saved', 'buyAgain'];
+  let userInforList = JSON.parse(localStorage.getItem('userInforList'));
+  let itemList = JSON.parse(localStorage.getItem('itemList'));
+  let logInId = sessionStorage.getItem('logInId');
+  // debugger;
+  let userInfor = userInforList.find(userInfor => {
+    return userInfor[0].userId == logInId;
+  });
+  let indexOfCartInUserInfor = cartNameArr.indexOf(whatCart) + 1;
+  let myCart = userInfor[indexOfCartInUserInfor]; //Array of itemId
+  let itemsInCart = myCart.map(id=>{
+    return itemList.find(item=>{
+      return item.itemId == id;
+    })
+  });
+  return itemsInCart;
+}
 //function for User
 function getIndexOfUserInforInUserInforListById(id) {
   let userInforList = JSON.parse(localStorage.getItem('userInforList'));
-  let checkIdArray = userInforList.map((userInfor,index)=>{
-    if(userInfor[0].userId == id){
+  let checkIdArray = userInforList.map((userInfor, index) => {
+    if (userInfor[0].userId == id) {
       return true;
     } else {
       return false;

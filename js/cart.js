@@ -3,7 +3,7 @@ window.onload = init();
 function init() {
     logInCheck();
     displayItemInCart();
-     subtotal();
+    subtotal();
 }
 //*** COMMON ***//
 function logInCheck() {
@@ -25,27 +25,13 @@ function logInCheck() {
 // **** DISPLAY ***//
 function displayItemInCart() {
     let cartWrapper = document.getElementById('cart-item-wrapper');
-    let itemList = JSON.parse(localStorage.getItem('itemList'));
-    let userInforList = JSON.parse(localStorage.getItem('userInforList'));
-
-    let logInId = sessionStorage.getItem('logInId');
-    let userInforIndex = getIndexOfUserInforInUserInforListById(logInId);
-    let userInfor = userInforList[userInforIndex];
-
-    let itemsIdInCart = userInfor[1];
-    if(itemsIdInCart == null || itemsIdInCart.length == 0){
+    let result = '';
+    let itemsInCart = getItemObjectInItemListByLoginId('mainCart');
+    if (itemsInCart == null || itemsInCart.length == 0) {
         cartWrapper.innerHTML = 'No item'
         return false;
     }
-    let itemsInCart = itemsIdInCart.map((itemId, index) => {
-        return getItemObjectInItemListById(itemId);
-    })
-    // console.log(itemsInCart);
-    localStorage.setItem('cartPageItemsInCart', JSON.stringify(itemsInCart));
-    let result = '';
-    let displayedItemId = [];
-    itemsInCart.forEach((item, index) => {
-        displayedItemId.push(item.itemId);
+    itemsInCart.forEach((item,index) => {
         result += `
         <div class="cart-item">
         <input id="checkBox_${index}" class="checkbox" type="checkbox" onclick="cartCheckBox(${index})" checked>
@@ -70,20 +56,25 @@ function displayItemInCart() {
 }
 function subtotal() {
     let userInforList = JSON.parse(localStorage.getItem('userInforList'));
+    let itemList = JSON.parse(localStorage.getItem('itemList'));
     let logInId = sessionStorage.getItem('logInId');
-    let userInforIndex = getIndexOfUserInforInUserInforListById(logInId);
-    let userInfor = userInforList[userInforIndex];
+    // let userInforIndex = getIndexOfUserInforInUserInforListById(logInId);
+    let userInfor = userInforList.find(userInfor =>{
+        return userInfor[0].userId == logInId;
+    })
 
     let itemsIdInCart = userInfor[1];
-    if(itemsIdInCart == null || itemsIdInCart.length == 0){
+    if (itemsIdInCart == null || itemsIdInCart.length == 0) {
         return 0;
     }
 
     let subtotalMoney = document.getElementById('subtotalMoney');
-    let cartPageItemsInCart = JSON.parse(localStorage.getItem('cartPageItemsInCart'));
     let total = 0;
     // debugger;
-    cartPageItemsInCart.forEach((item, index) => {
+    itemsIdInCart.forEach((id, index) => {
+        let item = itemList.find(item=>{
+            return item.itemId == id;
+        })
         let checkBox = document.getElementById(`checkBox_${index}`);
         let quantity = document.getElementById(`quantity_${index}`);
         if (checkBox.checked == true) {
@@ -94,11 +85,7 @@ function subtotal() {
             }
         }
     });
-    subtotalMoney.innerHTML = `Subtotal: <br> <span style="font-size: 22px; margin-top: 15px;">${total} $</span>`
-    // let subtotal = cartPageItemsInCart.reduce((total,currentValue)=>{
-
-    // },0)
-
+    subtotalMoney.innerHTML = `Subtotal: <br> <span style="font-size: 22px; margin-top: 15px;">${total} $</span>`;
 }
 function cartCheckBox(itemsInCartindex) {
     subtotal();
@@ -107,31 +94,18 @@ function quantityChange() {
     //onkeydown
     subtotal();
 }
-function deleteItemInCart(itemsInCartindex){
-// function deleteItemInCart(){
-    console.log("here");
-    let cartPageItemsInCart = JSON.parse(localStorage.getItem('cartPageItemsInCart'));
+function deleteItemInCart(itemsInCartIndex) {
     let userInforList = JSON.parse(localStorage.getItem('userInforList'));
-
     let logInId = sessionStorage.getItem('logInId');
-    let userInforIndex = getIndexOfUserInforInUserInforListById(logInId);
-    let userInfor = userInforList[userInforIndex];
-
-
-    cartPageItemsInCart.splice(itemsInCartindex,1);
-    let itemId = cartPageItemsInCart.map((item,index)=>{
-        return item.itemId;
-    })
-    userInforList[userInforIndex].splice(1,1,itemId);
-    
-    console.log('cartPageItemsInCart',cartPageItemsInCart);
-    console.log('itemId',itemId);
-    console.log(userInforList);
-
-
-    // localStorage.setItem('cartPageItemsInCart',JSON.stringify(cartPageItemsInCart));
-    // localStorage.setItem('userInforList',JSON.stringify(userInforList));
+    let userInfor = userInforList.find((userInfor)=>{
+        return userInfor[0].userId == logInId;
+    });
+    let itemsInCart = userInfor[1];
+    userInfor[1].splice(itemsInCartIndex,1);
+    // console.log('userInforList',userInforList);
+    localStorage.setItem('userInforList',JSON.stringify(userInforList));
+    displayItemInCart();
 }
-function jumpToShoppingPage(){
+function jumpToShoppingPage() {
     window.location.href = '../index.html';
 }
